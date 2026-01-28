@@ -254,14 +254,14 @@ rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-  require('lazy').setup({
-    {
-    "catppuccin/nvim",
-    name = "catppuccin",
+require('lazy').setup({
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
     priority = 1000,
     config = function()
-      require("catppuccin").setup({
-        flavour = "latte", -- latte (light), frappe, macchiato, mocha (dark)
+      require('catppuccin').setup {
+        flavour = 'latte', -- latte (light), frappe, macchiato, mocha (dark)
         transparent_background = false,
         integrations = {
           treesitter = true,
@@ -273,9 +273,21 @@ rtp:prepend(lazypath)
           lsp_trouble = true,
           nvimtree = true,
         },
-      })
-      vim.cmd.colorscheme("default") -- light mode (change to catppuccin-mocha for dark)
+      }
+      vim.cmd.colorscheme 'catppuccin-mocha'
     end,
+  },
+
+  { 'projekt0n/github-nvim-theme', name = 'github-theme' },
+  {
+    'amitds1997/remote-nvim.nvim',
+    version = '*', -- Pin to GitHub releases
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- For standard functions
+      'MunifTanjim/nui.nvim', -- To build the plugin UI
+      'nvim-telescope/telescope.nvim', -- For picking b/w different remote methods
+    },
+    config = true,
   },
 
   -- NOTE: Plugins can be added via a link or github org/name. To run setup automatically, use `opts = {}`
@@ -637,7 +649,7 @@ rtp:prepend(lazypath)
       -- You can press `g?` for help in this menu.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'lua_ls', -- Lua Language server
+        'lua-language-server', -- Lua Language server
         'stylua', -- Used to format Lua code
         -- You can add other tools here that you want Mason to install
       })
@@ -709,8 +721,8 @@ rtp:prepend(lazypath)
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        cpp = {"clang_format"},
-        c   = {"clang_format"}
+        cpp = { 'clang_format' },
+        c = { 'clang_format' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
